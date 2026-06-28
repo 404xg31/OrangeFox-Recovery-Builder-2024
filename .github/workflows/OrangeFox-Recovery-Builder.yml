@@ -99,6 +99,11 @@ jobs:
         git clone https://gitlab.com/OrangeFox/sync.git
         cd sync
         ./orangefox_sync.sh --branch ${{ github.event.inputs.MANIFEST_BRANCH }} --path ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
+    
+     - name: Force Sync Vendor
+      run: |
+        cd ${GITHUB_WORKSPACE}/OrangeFox
+        repo sync -j$(nproc) vendor/orangefox
 
     - name: Clone Device Tree
       run: |
